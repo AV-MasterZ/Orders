@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.zhadaev.time</groupId>
-    <artifactId>Time</artifactId>
+    <groupId>org.zhadaev.date</groupId>
+    <artifactId>Date</artifactId>
 
     <build>
-        <finalName>Time</finalName>
+        <finalName>Date</finalName>
     </build>
 
 </project>

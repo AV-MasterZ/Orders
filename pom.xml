@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <module>Time</module>
+        <module>Date</module>
         <module>App</module>
     </modules>
 
