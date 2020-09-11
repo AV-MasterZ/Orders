@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Заказы</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <style>
+        table, tr {
+            width: 100%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 16px;
+        }
+        .order {
+            margin-top: 30px;
+        }
+        #container {
+            max-width: 1000px;
+            margin: auto;
+        }
+        #date {
+            width: 100%;
+            text-align: right;
+            margin: 10px 0;
+        }
+        #updatebtn {
+            display: block;
+            padding: 10px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="date"></div>
+        <div id="contents"></div>
+    </div>
+
+    <script>
+        Vue.http.get('/date').then(response => {
+            document.getElementById('date').innerHTML = response.body;
+        });
+
+        var ordersFromServer = Vue.resource('/orders');
+        var updateProducts = Vue.resource('/update');
+
+        Vue.component('order-details', {
+            props: ['orderDetails'],
+            template:
+                '<tr>' +
+                    '<td>{{orderDetails.product.serialNumber}}</td>' +
+                    '<td>{{orderDetails.product.title}}</td>' +
+                    '<td>{{orderDetails.product.description}}</td>' +
+                    '<td>{{orderDetails.product.spDate}}</td>' +
+                    '<td>{{orderDetails.quantity}}</td>' +
+                '</tr>'
+        });
+
+        Vue.component('order-row', {
+            props: ['order'],
+            template:
+                '<div class="order">' +
+                    'Заказ от {{order.createdDt}}<br>' +
+                    'Заказчик: {{order.customerName}} ({{order.customerAddress}})<br>' +
+                    '<b>Сумма заказа: {{order.amount}} фантиков</b>' +
+                    '<table style="margin-top: 10px;">' +
+                        '<tr>' +
+                            '<th>Серийный номер</th>' +
+                            '<th>Название товара</th>' +
+                            '<th>Описание</th>' +
+                            '<th>Дата сер. пр-ва</th>' +
+                            '<th>Кол.</th>' +
+                        '</tr>' +
+                        '<order-details v-for="orderDetails in order.orderDetailsList" :key="orderDetails.id" :orderDetails="orderDetails"/>' +
+                    '</table>' +
+                '</div>'
+        });
+
+        Vue.component('orders-list', {
+            props: ['orders'],
+            template: '<div><order-row v-for="order in orders" :key="order.id" :order="order"/></div>',
+            created: function() {
+                ordersFromServer.get().then(result =>
+                    result.json().then(data =>
+                        data.forEach(order => this.orders.push(order))
+                    )
+                )
+            }
+        });
+
+        var app = new Vue({
+            el: '#contents',
+            template: '<div><button @click="update()" id="updatebtn">Обновить товары</button><orders-list :orders="orders"/></div>',
+            data: {orders: []},
+            methods: {
+                update() {
+                    updateProducts.get().then(response => {
+                        response.json().then(data => {
+                            this.orders = [];
+                            data.forEach(order => this.orders.push(order));
+                        })
+                    });
+                }
+            }
+
+        });
+
+    </script>
+</body>
+</html>
