@@ -1,5 +1,7 @@
 package org.zhadaev.app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,7 @@ public class OrderDetails {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonBackReference
     private Order order;
 
     public Long getId() {

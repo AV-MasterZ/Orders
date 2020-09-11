@@ -1,7 +1,10 @@
 package org.zhadaev.app.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +26,10 @@ public class Order {
 
     @Column(name = "created_dt", nullable=false)
     private Date createdDt;
+
+    @OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<OrderDetails> orderDetailsList;
 
     public Long getId() {
         return id;
@@ -62,6 +69,14 @@ public class Order {
 
     public void setCreatedDt(final Date createdDt) {
         this.createdDt = createdDt;
+    }
+
+    public List<OrderDetails> getOrderDetailsList() {
+        return orderDetailsList;
+    }
+
+    public void setOrderDetailsList(final List<OrderDetails> orderDetailsList) {
+        this.orderDetailsList = orderDetailsList;
     }
 
     @Override
