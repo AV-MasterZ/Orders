@@ -43,12 +43,16 @@
     </div>
 
     <script>
-        Vue.http.get('/date').then(response => {
+        var path = window.location.pathname;
+
+        if (path === '/') path = '';
+
+        Vue.http.get(path + '/date').then(response => {
             document.getElementById('date').innerHTML = response.body;
         });
 
-        var ordersFromServer = Vue.resource('/orders');
-        var updateProducts = Vue.resource('/update');
+        var ordersFromServer = Vue.resource(path + '/orders');
+        var updateProducts = Vue.resource(path + '/update');
 
         Vue.component('order-details', {
             props: ['orderDetails'],
