@@ -21,7 +21,7 @@ public class JibxService implements IJibxService {
         try {
             IBindingFactory bfact = BindingDirectory.getFactory(ProductShell.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            InputStream in = new FileInputStream(new File(getPath() + xmlFilename));
+            InputStream in = new FileInputStream(new File(getPath() + File.separator + xmlFilename));
             productShell = (ProductShell) uctx.unmarshalDocument(in, null);
         } catch (JiBXException | FileNotFoundException e) {
             e.printStackTrace();
@@ -44,8 +44,12 @@ public class JibxService implements IJibxService {
             return "/";
         }
         String path = file.getPath();
-        String fileName = file.getName();
-        return path.substring(0, path.length() - fileName.length());
+
+        for (int i = 1; i <= 3; i++) {
+            path = path.substring(0, path.lastIndexOf(File.separator));
+        }
+
+        return path;
     }
 
 }
