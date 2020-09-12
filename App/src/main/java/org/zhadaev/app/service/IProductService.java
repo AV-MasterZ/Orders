@@ -9,4 +9,5 @@ import java.util.List;
 public interface IProductService {
     Product findById(final String id);
     List<Product> findAll();
+    void saveList(final List<Product> products);
 }

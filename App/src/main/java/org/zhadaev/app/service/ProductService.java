@@ -22,4 +22,11 @@ public class ProductService implements IProductService {
     public List<Product> findAll() {
         return productRepository.findAll();
     }
+
+    @Override
+    public void saveList(final List<Product> products) {
+        for (Product product: products) {
+            productRepository.save(product);
+        }
+    }
 }
