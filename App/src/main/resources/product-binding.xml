@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<binding direction="input">
+    <mapping name="shell" class="org.zhadaev.app.model.ProductShell">
+        <collection name="products" field="products" item-type="org.zhadaev.app.model.Product" type="java.util.ArrayList">
+            <structure name="product" type="org.zhadaev.app.model.Product">
+                <value name="serialNumber" field="serialNumber" />
+                <value name="title" field="title" />
+                <value name="description" field="description" usage="optional" />
+                <value name="spDate" field="spDate" />
+            </structure>
+        </collection>
+    </mapping>
+</binding>
