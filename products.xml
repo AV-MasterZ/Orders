@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shell>
+    <products>
+        <product>
+            <serialNumber>13s2452d47g56</serialNumber>
+            <title>Пылесос</title>
+            <description>Тихий, не пугающий кота, пылесос</description>
+            <spDate>2019-02-13</spDate>
+        </product>
+        <product>
+            <serialNumber>14xz78589k635</serialNumber>
+            <title>Шредер</title>
+            <description>Уничтожитель</description>
+            <spDate>2020-06-03</spDate>
+        </product>
+        <product>
+            <serialNumber>257x53687lk45</serialNumber>
+            <title>Шкаф</title>
+            <description>Ящик с одеждой</description>
+            <spDate>1916-11-11</spDate>
+        </product>
+        <product>
+            <serialNumber>4v783j9658s47</serialNumber>
+            <title>Больше не холодильник</title>
+            <description></description>
+            <spDate>2017-10-22</spDate>
+        </product>
+        <product>
+            <serialNumber>13a466g78b658</serialNumber>
+            <title>Новый товар</title>
+            <description>Описание нового товара</description>
+            <spDate>2020-09-11</spDate>
+        </product>
+    </products>
+</shell>
