@@ -27,7 +27,7 @@
     </dependencies>
 
     <build>
-        <finalName>date</finalName>
+        <finalName>dateservice</finalName>
     </build>
 
 </project>
