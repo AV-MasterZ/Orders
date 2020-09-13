@@ -26,7 +26,11 @@ public class ProductService implements IProductService {
     @Override
     public void saveList(final List<Product> products) {
         for (Product product: products) {
-            productRepository.save(product);
+            if (!product.getSerialNumber().isEmpty() && product.getSerialNumber() != null
+                    && !product.getTitle().isEmpty() && product.getTitle() != null
+                    && product.getSpDate() != null) {
+                productRepository.save(product);
+            }
         }
     }
 }
