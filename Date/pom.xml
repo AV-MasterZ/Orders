@@ -8,12 +8,26 @@
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <packaging>war</packaging>
 
     <groupId>org.zhadaev.date</groupId>
     <artifactId>Date</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.jws</groupId>
+            <artifactId>javax.jws-api</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+    </dependencies>
+
     <build>
-        <finalName>Date</finalName>
+        <finalName>date</finalName>
     </build>
 
 </project>
