@@ -1,9 +1,9 @@
 package org.zhadaev.date;
 
 import javax.jws.WebService;
-import java.sql.Date;
+import java.util.Date;
 
 @WebService
 public interface IDateService {
-    Date getDate();
+    String getDate();
 }
