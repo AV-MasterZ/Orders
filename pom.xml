@@ -17,6 +17,7 @@
     <modules>
         <module>Date</module>
         <module>App</module>
+        <module>DateService</module>
     </modules>
 
     <properties>
