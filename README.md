@@ -3,4 +3,4 @@
 
 Запуск:
 Развернуть на сервере orders.war и date-service.ear;
-файл products.xml должен лежать в одном каталоге с orders.war 
+при разворачивании на wildfly файл products.xml должен лежать в каталоге wildfly 
