@@ -9,19 +9,24 @@ import org.zhadaev.app.model.Product;
 import org.zhadaev.app.model.ProductShell;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class JibxService implements IJibxService {
 
+    private final String path;
+
+    public JibxService() {
+        path = System.getProperty("user.home");
+    }
+
     public List<Product> unMarshalProduct(final String xmlFilename) {
         ProductShell productShell = null;
         try {
             IBindingFactory bfact = BindingDirectory.getFactory(ProductShell.class);
             IUnmarshallingContext uctx = bfact.createUnmarshallingContext();
-            InputStream in = new FileInputStream(new File(getPath() + File.separator + xmlFilename));
+            InputStream in = new FileInputStream(new File(path + File.separator + xmlFilename));
             productShell = (ProductShell) uctx.unmarshalDocument(in, null);
         } catch (JiBXException | FileNotFoundException e) {
             e.printStackTrace();
@@ -31,25 +36,6 @@ public class JibxService implements IJibxService {
             productShell.setProducts(new ArrayList<>());
         }
         return productShell.getProducts();
-    }
-
-    private String getPath() {
-        File file = null;
-        try {
-            file = new File(JibxService.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        if (file == null) {
-            return "/";
-        }
-        String path = file.getPath();
-
-        for (int i = 1; i <= 3; i++) {
-            path = path.substring(0, path.lastIndexOf(File.separator));
-        }
-
-        return path;
     }
 
 }
