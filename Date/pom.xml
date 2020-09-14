@@ -11,7 +11,7 @@
     <packaging>war</packaging>
 
     <groupId>org.zhadaev.date</groupId>
-    <artifactId>Date</artifactId>
+    <artifactId>dateservice</artifactId>
 
     <dependencies>
         <dependency>
